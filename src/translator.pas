@@ -80,7 +80,7 @@ begin
       LUnicode:=UTF8CodepointToUnicode(LPointer,LCPLen);
       if LCPLen=2 then
         with AVRConfigArray[ATranslatorIdx].Translator do
-          case Integer(LUnicode.Words[0]) of
+          case Word(LUnicode) of
             UTF8LATIN1SUPPLEMENT_LOW..UTF8LATIN1SUPPLEMENT_HIGH: Result:=Result+IfThen(ReplaceUTF8Latin1Supplement,UTF8Latin1Supplement[LUnicode],AUTF8String.Substring(LIdx,LCPLen));
             UTF8LATIN1EXTENDEDA_LOW..UTF8LATIN1EXTENDEDA_HIGH: Result:=Result+IfThen(ReplaceUTF8Latin1ExtendedA,UTF8Latin1ExtendedA[LUnicode],AUTF8String.Substring(LIdx,LCPLen));
             UTF8LATIN1EXTENDEDB_LOW..UTF8LATIN1EXTENDEDB_HIGH: Result:=Result+IfThen(ReplaceUTF8Latin1ExtendedB,UTF8Latin1ExtendedB[LUnicode],AUTF8String.Substring(LIdx,LCPLen));
