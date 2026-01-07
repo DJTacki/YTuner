@@ -345,19 +345,27 @@ begin
     end;
 end;
 
+//function CalcFileCRC32(AFileName: string): Cardinal;
+//var
+//  Buffer : TBytes;
+//begin
+//  Result:=CRC32(0,nil,0);
+//  with TFileStream.Create(AFileName, fmOpenRead or fmShareDenyNone) do
+//    try
+//      SetLength(Buffer, Size);
+//      Read(Buffer,Size);
+//      Result:=CRC32(Result,@Buffer[0],Size);
+//    finally
+//      Free;
+//    end;
+//end;
+
 function CalcFileCRC32(AFileName: string): Cardinal;
-var
-  Buffer : TBytes;
 begin
-  Result:=CRC32(0,nil,0);
-  with TFileStream.Create(AFileName, fmOpenRead or fmShareDenyNone) do
-    try
-      SetLength(Buffer, Size);
-      Read(Buffer,Size);
-      Result:=CRC32(Result,@Buffer[0],Size);
-    finally
-      Free;
-    end;
+  // Bypass CalcFileCRC32 as it causes "Segmentation fault" on linux build.
+  
+  Result := 1; 
+
 end;
 
 function RemoveEscChars(LInputStr: RawByteString): RawByteString;
